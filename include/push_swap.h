@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/10 17:44:31 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/10 17:59:53 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ struct	s_op
 int		ps_init(t_ps *ps, int argc, char **argv);
 int		push_swap(t_ps *ps);
 void	ps_destroy(t_ps *ps);
+
+/*
+ * ps_sort.c
+ */
+int		ps_dfs_sort(t_ps *ps);
+int		ps_qsort(t_ps *ps);
 
 /*
  * op_func_swap.c
