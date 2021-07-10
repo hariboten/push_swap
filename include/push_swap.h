@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/10 17:59:53 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/10 18:52:47 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include "../libdlist/include/dlist.h"
 
 typedef struct s_ps t_ps;
 typedef	struct s_op t_op;
+typedef	long long t_ll;
 
 struct	s_ps
 {
+	t_ll	*args;
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
 	t_dlist	*operations;
@@ -32,6 +35,13 @@ struct	s_op
 	char	*operation;
 	void	(*op_func)(t_op *);
 };
+
+typedef enum e_errno
+{
+	E_FEWARG = 1,
+	E_INVARG
+}			t_errno;
+
 
 /*
  * push_swap.c
