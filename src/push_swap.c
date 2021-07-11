@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/10 19:01:53 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/11 15:15:30 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,30 @@ bool	cmp_less3(void *a, void *b, void *ref)
 
 int		ps_error(t_errno e)
 {
-	if (e == E_FEWARG)
-		ft_putstr_fd("Error\n", 2);
-	else if (e == E_INVARG)
-		ft_putstr_fd("Error\n", 2);
-	else
-		ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	return (-1);
+}
+
+bool	is_invalid_arg(const char *arg)
+{
+	const char *p;
+
+	p = arg;
+	if (*p == '0')
+		return (true);
+	if (*p == '-')
+		p++;
+	while (*p)
+	{
+		if (*p < '0' || *p > '9')
+			return (true);
+		p++;
+	}
+	if (ft_atoi(arg) == INT_MAX && ft_strcmp(arg, "2147483647"))
+		return (true);
+	if (ft_atoi(arg) == INT_MIN && ft_strcmp(arg, "-2147483648"))
+		return (true);
+	return (false);
 }
 
 int		input_arguments(t_ps *ps, int argc, char **argv)
@@ -49,8 +66,25 @@ int		input_arguments(t_ps *ps, int argc, char **argv)
 		if (is_invalid_arg(argv[i]))
 			return (ps_error(E_INVARG));
 		ps->args[i] = ft_atoi(argv[i]);
+
+		i++;
 	}
 	return (0);
+}
+
+bool	has_duplication(t_ll *arr, t_dlist *index)
+{
+	t_ll	prev;
+
+	prev = arr[(t_ll)index->content];
+	index = index->next;
+	while (index)
+	{
+		if (prev == arr[(t_ll)index->content])
+			return (true);
+		index = index->next;
+	}
+	return (false);
 }
 
 int		ps_init(t_ps *ps, int argc, char **argv)
