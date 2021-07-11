@@ -6,7 +6,7 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/10 14:13:49 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/11 14:34:50 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,18 @@ OBJDIR = ./obj/
 OBJS = $(SRCNAMES:%.c=$(OBJDIR)%.o)
 INCLUDEDIR = ./include/
 
-#LIBFTDIR = ./libft/
-#LIBFT = libft.a
+LIBFTDIR = ./libft/
+LIBFT = libft.a
+LIBDLISTDIR = ./libslist/
+LIBDLIST = libdlist.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I $(INCLUDEDIR) # -g -O0
+CFLAGS = -Wall -Werror -Wextra -I $(INCLUDEDIR)  -g -O0
 
 all : $(OBJDIR) $(NAME)
 
-$(NAME) : $(OBJS) # (LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ # -L $(LIBFTDIR) -lft
+$(NAME) : $(OBJS) $(LIBFT) $(LIBDLIST)
+	$(CC) $(CFLAGS) -o $@ $^ -L $(LIBFTDIR) -L $(LIBDLISTDIR) -lft -ldlist
 
 $(OBJDIR) :
 	mkdir -p $@
@@ -35,16 +37,21 @@ $(OBJDIR) :
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-#(LIBFT)
-#	make -C $(LIBFTDIR)
+$(LIBFT)
+	make -C $(LIBFTDIR)
+
+$(LIBDLIST)
+	make -C $(LIBDLISTDIR)
 
 clean :
 	rm -f $(OBJS)
-#	make clean -C $(LIBFTDIR)
+	make clean -C $(LIBFTDIR)
+	make clean -C $(LIBDLISTDIR)
 
 fclean : clean
 	rm -f $(NAME)
-#	make fclean -C $(LIBFTDIR)
+	make fclean -C $(LIBFTDIR)
+	make fclean -C $(LIBDLISTDIR)
 
 re : fclean all
 
