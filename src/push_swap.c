@@ -6,11 +6,37 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 15:41:35 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/11 16:04:39 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
+
+void	print_stack(t_ps *ps, t_dlist *stack)
+{
+	while (stack)
+	{
+		ft_putendl_fd(ft_itoa(ps->args[(t_ll)stack->content]), 1);
+		stack = stack->next;
+	}
+}
+
+void	print_args(t_ps *ps)
+{
+	int		i;
+
+	i = 0;
+	while (i < ps->arg_size)
+		ft_putendl_fd(ft_itoa(ps->args[i++]), 1);
+}
+
+void	init_print_debug(t_ps *ps)
+{
+	ft_putendl_fd("args", 1);
+	print_args(ps);
+	ft_putendl_fd("stack_a", 1);
+	print_stack(ps, ps->stack_a);
+}
 
 bool	cmp_less3(void *a, void *b, void *ref)
 {
@@ -99,6 +125,7 @@ void	make_index(t_dlist **lst, t_ll size)
 
 int		ps_init(t_ps *ps, int argc, char **argv)
 {
+	ps->arg_size = argc - 1;
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
@@ -110,8 +137,8 @@ int		ps_init(t_ps *ps, int argc, char **argv)
 		free(ps->args);
 		return (-1);
 	}
-	make_index(&ps->stack_a, argc - 1);
-	if (dlist_size(ps->stack_a) != argc - 1)
+	make_index(&ps->stack_a, ps->arg_size);
+	if (dlist_size(ps->stack_a) != ps->arg_size)
 	{
 		free(ps->args);
 		dlist_destroy(&ps->stack_a, NULL);
