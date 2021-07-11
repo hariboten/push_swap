@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 15:56:52 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:01:13 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef	long long t_ll;
 
 struct	s_ps
 {
-	int		arg_size;
+	size_t	arg_size;
 	t_ll	*args;
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
@@ -42,7 +42,8 @@ struct	s_op
 typedef enum e_errno
 {
 	E_FEWARG = 1,
-	E_INVARG
+	E_INVARG,
+	E_ALLOC
 }			t_errno;
 
 
@@ -85,5 +86,7 @@ void	op_rr(t_ps *ps);
 void	op_rra(t_ps *ps);
 void	op_rrb(t_ps *ps);
 void	op_rrr(t_ps *ps);
+
+void	init_print_debug(t_ps *ps);
 
 #endif
