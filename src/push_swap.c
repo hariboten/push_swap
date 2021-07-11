@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 15:15:30 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/11 15:41:35 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,18 @@ bool	has_duplication(t_ll *arr, t_dlist *index)
 	return (false);
 }
 
-int		ps_init(t_ps *ps, int argc, char **argv)
+void	make_index(t_dlist **lst, t_ll size)
 {
 	t_ll	i;
 
+	i = size;
+	while (i >= 0)
+		dlist_push_front(lst, dlist_new((void *)i--));
+	return ;
+}
+
+int		ps_init(t_ps *ps, int argc, char **argv)
+{
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
@@ -102,9 +110,7 @@ int		ps_init(t_ps *ps, int argc, char **argv)
 		free(ps->args);
 		return (-1);
 	}
-	i = argc - 1;
-	while (i >= 0)
-		dlist_push_front(&ps->stack_a, dlist_new((void *)i--));
+	make_index(&ps->stack_a, argc - 1);
 	if (dlist_size(ps->stack_a) != argc - 1)
 	{
 		free(ps->args);
