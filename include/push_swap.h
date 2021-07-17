@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:13:05 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 15:44:48 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef	long long t_ll;
 
 struct	s_ps
 {
-	size_t	arg_size;
+	size_t	arg_num;
 	t_ll	*args;
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;

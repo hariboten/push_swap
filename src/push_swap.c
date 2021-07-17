@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 17:22:40 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 16:10:13 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_args(t_ps *ps)
 	size_t		i;
 
 	i = 0;
-	while (i < ps->arg_size)
+	while (i < ps->arg_num)
 		ft_putendl_fd(ft_itoa(ps->args[i++]), 1);
 }
 
@@ -36,20 +36,6 @@ void	init_print_debug(t_ps *ps)
 	print_args(ps);
 	ft_putendl_fd("stack_a", 1);
 	print_stack(ps, ps->stack_a);
-}
-
-bool	cmp_less3(void *a, void *b, void *ref)
-{
-	t_ll	aa;
-	t_ll	bb;
-	t_ll	*ref_arr;
-
-	ref_arr = ref;
-	aa = (t_ll)a;
-	bb = (t_ll)b;
-	if (ref_arr[aa] < ref_arr[bb])
-		return (true);
-	return (false);
 }
 
 int		ps_error(t_errno e)
@@ -98,58 +84,31 @@ int		input_arguments(t_ps *ps, int argc, char **argv)
 	return (0);
 }
 
-bool	has_duplication(t_ll *arr, t_dlist *index)
-{
-	t_ll	prev;
-
-	prev = arr[(t_ll)index->content];
-	index = index->next;
-	while (index)
-	{
-		if (prev == arr[(t_ll)index->content])
-			return (true);
-		prev = arr[(t_ll)index->content];
-		index = index->next;
-	}
-	return (false);
-}
-
-void	make_index(t_dlist **lst, t_ll size)
-{
-	t_ll	i;
-
-	i = size - 1;
-	while (i >= 0)
-		dlist_push_front(lst, dlist_new((void *)i--));
-	return ;
-}
-
 int		ps_init(t_ps *ps, int argc, char **argv)
 {
-	ps->arg_size = argc - 1;
+	t_ll	*order;
+
+	ps->arg_num = argc - 1;
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
-	ps->args = malloc((argc - 1) * sizeof(t_ll));
-	if (!ps->args)
+	ps->args = malloc(ps->arg_num * sizeof(t_ll));
+	if (!ps->args || !order)
 		return (ps_error(E_ALLOC));
 	if (input_arguments(ps, argc, argv))
+		return (-1);
+	order = malloc(ps->arg_num * sizeof(t_ll));
+	if (!order)
+		return (ps_error(E_ALLOC));
+	if (!coordinate_compression(order, ps->args, ps->arg_num))
 	{
-		free(ps->args);
+		free(order);
 		return (-1);
 	}
-	make_index(&ps->stack_a, ps->arg_size);
-	if (dlist_size(ps->stack_a) != ps->arg_size)
-	{
-		ps_destroy(ps);
+	ps->stack_a = dlist_arr2dlist(order, arg_num, sizeof(t_ll));
+	free(order);
+	if (!ps->stack_a)
 		return (ps_error(E_ALLOC));
-	}
-	dlist_qsort4(ps->stack_a, dlist_back(ps->stack_a), cmp_less3, ps->args);
-	if (has_duplication(ps->args, ps->stack_a))
-	{
-		ps_destroy(ps);
-		return (ps_error(E_INVARG));
-	}
 	return (0);
 }
 
@@ -166,6 +125,7 @@ int		push_swap(t_ps *ps)
 void	ps_destroy(t_ps *ps)
 {
 	free(ps->args);
+	free(ps->order);
 	dlist_destroy(&ps->stack_a, NULL);
 	dlist_destroy(&ps->stack_b, NULL);
 	dlist_destroy(&ps->operations, NULL);
