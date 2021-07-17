@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:44:48 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:05:36 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ typedef enum e_errno
 /*
  * push_swap.c
  */
-int		ps_init(t_ps *ps, int argc, char **argv);
 int		push_swap(t_ps *ps);
 void	ps_destroy(t_ps *ps);
+int		ps_error(t_errno e);
 
 /*
  * ps_sort.c
@@ -93,6 +93,19 @@ void	op_rra(t_ps *ps);
 void	op_rrb(t_ps *ps);
 void	op_rrr(t_ps *ps);
 
+/*
+ * ps_init.c
+ */
+int		ps_init(t_ps *ps, int argc, char **argv);
+
+/*
+ * coordinate_compression.c
+ */
+int		coordinate_compression(t_ll *order, t_ll *arr, size_t len);
+
+/*
+ * print_debug.c
+ */
 void	init_print_debug(t_ps *ps);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 10:37:24 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 16:09:59 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:20:01 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static bool	has_duplication(t_ll *arr, size_t len)
 	return (false);
 }
 
+/*
+ * using binary search.
+ */
 static void	ordering(t_ll *order, t_ll *sorted, size_t len)
 {
 	int		i;
@@ -53,6 +56,13 @@ static void	ordering(t_ll *order, t_ll *sorted, size_t len)
 	return ;
 }
 
+/*
+ * coordinate_compression
+ * - make copy of args.
+ * - sort.
+ * - duplication check.
+ * - search order number.
+ */
 int		coordinate_compression(t_ll *order, t_ll *arr, size_t len)
 {
 	t_ll	*sorted;
