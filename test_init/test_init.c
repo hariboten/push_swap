@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:07:59 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 16:09:37 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 18:33:23 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 int		main(int argc, char **argv)
 {
 	t_ps	ps;
+	int		ret_val;
 
-	if (ps_init(&ps, argc, argv))
-		return (-1);
-	init_print_debug(&ps);
+	ret_val = ps_init(&ps, argc, argv);
+	if (ret_val == 0)
+		init_print_debug(&ps);
 	ps_destroy(&ps);
-	return (0);
+	return (ret_val);
 }

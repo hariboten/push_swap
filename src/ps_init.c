@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:45:41 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 18:21:58 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool		is_invalid_arg(const char *arg)
 	const char *p;
 
 	p = arg;
-	if (*p == '0')
+	if (*p == '0' && *(p + 1))
 		return (true);
 	if (*p == '-')
 		p++;
@@ -74,7 +74,7 @@ static t_dlist	*llarr2dlist(t_ll *arr, size_t len)
 	i = len;
 	while (--i >= 0)
 	{
-		tmp = dlist_new((void *)arr[len]);
+		tmp = dlist_new((void *)arr[i]);
 		if (!tmp)
 		{
 			dlist_destroy(&newlst, NULL);

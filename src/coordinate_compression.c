@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 10:37:24 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:46:57 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 18:20:05 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static void	ordering(t_ll *order, t_ll *sorted, size_t len)
 		ng = len;
 		while (ng - ok > 1)
 		{
-			mid = ok + ng / 2;
-			if (sorted[mid] >= order[i])
+			mid = (ok + ng) / 2;
+			if (sorted[mid] <= order[i])
 				ok = mid;
 			else
 				ng = mid;
 		}
-		order[i++] = sorted[ok];
+		order[i++] = ok;
 	}
 	return ;
 }
@@ -61,6 +61,7 @@ static void	ordering(t_ll *order, t_ll *sorted, size_t len)
  * - make copy of args.
  * - sort.
  * - duplication check.
+ * - copy args to order arr.
  * - search order number.
  */
 int		coordinate_compression(t_ll *order, t_ll *arr, size_t len)
@@ -77,6 +78,7 @@ int		coordinate_compression(t_ll *order, t_ll *arr, size_t len)
 		free(sorted);
 		return (ps_error(E_INVARG));
 	}
+	ft_memcpy(order, arr, len * sizeof(t_ll));
 	ordering(order, sorted, len);
 	free(sorted);
 	return (0);
