@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:05:36 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 18:44:46 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <limits.h>
 # include "../libdlist/include/dlist.h"
 # include "../libft/libft.h"
+
+# define DFS_NLIM 6
 
 typedef struct s_ps t_ps;
 typedef	struct s_op t_op;

@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:44:46 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 18:47:53 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int		ps_error(t_errno e)
 
 int		push_swap(t_ps *ps)
 {
-	(void) ps;
-/*
-	if (dlist_size(ps->stack_a) <= 6)
+	if (dlist_size(ps->stack_a) <= DFS_NLIM)
 		return (ps_dfs_sort(ps));
-	return (ps_qsort(ps));
-*/
+	ft_putstr_fd("have not support more than DFS_NLIM arguments", 2);
+	/*
+	 * return (ps_qsort(ps));
+	 */
 	return (0);
 }
 
