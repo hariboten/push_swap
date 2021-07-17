@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 16:10:13 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 16:42:54 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,30 @@ int		input_arguments(t_ps *ps, int argc, char **argv)
 	return (0);
 }
 
+t_dlist	*llarr2dlist(t_ll *arr, size_t len)
+{
+	t_dlist *newlst;
+	t_dlist *tmp;
+
+	newlst = NULL;
+	while (--len >= 0)
+	{
+		tmp = dlist_new((void *)arr[len]);
+		if (!tmp)
+		{
+			dlist_destroy(&newlst, NULL);
+			ps_error(E_ALLOC);
+			return (NULL);
+		}
+		dlist_push_front(&newlst, tmp);
+	}
+	return (newlst);
+}
+
 int		ps_init(t_ps *ps, int argc, char **argv)
 {
 	t_ll	*order;
+	int		ret_val;
 
 	ps->arg_num = argc - 1;
 	ps->stack_a = NULL;
@@ -100,15 +121,11 @@ int		ps_init(t_ps *ps, int argc, char **argv)
 	order = malloc(ps->arg_num * sizeof(t_ll));
 	if (!order)
 		return (ps_error(E_ALLOC));
-	if (!coordinate_compression(order, ps->args, ps->arg_num))
-	{
-		free(order);
-		return (-1);
-	}
-	ps->stack_a = dlist_arr2dlist(order, arg_num, sizeof(t_ll));
+	ret_val = coordinate_compression(order, ps->args, ps->arg_num);
+	ps->stack_a = llarr2dlist(order, ps->arg_num);
 	free(order);
-	if (!ps->stack_a)
-		return (ps_error(E_ALLOC));
+	if (ret_val || !ps->stack_a)
+		return (-1);
 	return (0);
 }
 
@@ -125,7 +142,6 @@ int		push_swap(t_ps *ps)
 void	ps_destroy(t_ps *ps)
 {
 	free(ps->args);
-	free(ps->order);
 	dlist_destroy(&ps->stack_a, NULL);
 	dlist_destroy(&ps->stack_b, NULL);
 	dlist_destroy(&ps->operations, NULL);
