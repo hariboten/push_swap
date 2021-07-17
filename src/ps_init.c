@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:15:23 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:41:16 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
  *   - duplicate '-'
  *   - contain non numeric character
  * - bigger or smaller than INT range
- * (- duplicate value) <- Do NOT check here.
+ * - (duplicate value) <- Do NOT check here.
+ *   - checked in coordinate_compression.c
  */
 static bool		is_invalid_arg(const char *arg)
 {
