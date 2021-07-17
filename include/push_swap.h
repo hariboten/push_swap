@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/11 17:01:13 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 15:13:05 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void	ps_destroy(t_ps *ps);
  */
 int		ps_dfs_sort(t_ps *ps);
 int		ps_qsort(t_ps *ps);
+
+/*
+ * qsort_ll.c
+ */
+int		less_ll(t_ll a, t_ll b);
+void	qsort_ll(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll));
 
 /*
  * op_func_swap.c
