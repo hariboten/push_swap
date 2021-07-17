@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 10:37:24 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:20:01 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:46:57 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	has_duplication(t_ll *arr, size_t len)
 {
-	int		i;
+	size_t	i;
 	t_ll	prev;
 
 	prev = arr[0];
@@ -33,7 +33,7 @@ static bool	has_duplication(t_ll *arr, size_t len)
  */
 static void	ordering(t_ll *order, t_ll *sorted, size_t len)
 {
-	int		i;
+	size_t	i;
 	int		ok;
 	int		ng;
 	int		mid;

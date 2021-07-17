@@ -6,7 +6,7 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/17 17:33:42 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/17 17:49:26 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCNAMES = main.c\
 		   push_swap.c\
 		   ps_init.c\
 		   coordinate_compression.c\
+		   qsort_ll.c\
 		   print_debug.c
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJDIR = ./obj/
