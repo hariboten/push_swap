@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:30:53 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/09 11:49:03 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:17:15 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void			dlist_push_front(t_dlist **lst, t_dlist *newlst)
 	}
 	lstfront = dlist_front(*lst);
 	newback = dlist_back(newlst);
-	lstfront->next = newback;
-	newback->prev = lstfront;
+	lstfront->prev = newback;
+	newback->next = lstfront;
 	*lst = dlist_front(newlst);
 	return ;
 }

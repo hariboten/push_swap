@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/24 10:40:19 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/24 10:42:38 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_ps	ps;
-	int		ret_val;
-
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

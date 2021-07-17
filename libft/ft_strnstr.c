@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 17:16:25 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/22 17:51:56 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strnstr(const char *str, const char *substr, size_t n)
 {
-	t_ps	ps;
-	int		ret_val;
+	char	*p;
+	char	*p_end;
+	size_t	substr_len;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	p = (char *)str;
+	substr_len = ft_strlen(substr);
+	p_end = (char *)str + n - (substr_len - 1);
+	if (substr_len == 0)
+		return ((char *)str);
+	while (p < p_end)
+	{
+		if (ft_strncmp(p, substr, substr_len) == 0)
+			return (p);
+		p++;
+	}
+	return (NULL);
 }

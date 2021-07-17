@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 16:15:51 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/23 16:57:05 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-	t_ps	ps;
-	int		ret_val;
+	size_t tmp;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	tmp = ft_strlen(src);
+	if (destsize == 0)
+		return (tmp);
+	while (--destsize)
+	{
+		*dest++ = *src;
+		if (!(*src))
+			break ;
+		src++;
+	}
+	if (!destsize)
+		*dest = 0;
+	return (tmp);
 }

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 22:24:16 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/24 15:08:21 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_ps	ps;
-	int		ret_val;
+	size_t	sub_len;
+	char	*substr;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	if (!s1 || !set)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1) != NULL)
+		s1++;
+	sub_len = ft_strlen(s1);
+	while (sub_len && ft_strchr(set, s1[sub_len]))
+		sub_len--;
+	substr = ft_substr((char *)s1, 0, sub_len + 1);
+	return (substr);
 }

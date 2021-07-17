@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:44:46 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/08/01 18:29:21 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/08/10 15:07:40 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-
-int		ps_error(t_errno e)
+int		ft_ifree(void *ptr, int ret)
 {
-	(void) e;
-	ft_putstr_fd("Error\n", 2);
-	return (-1);
+	free(ptr);
+	ptr = NULL;
+	return (ret);
 }
 
-int		push_swap(t_ps *ps)
+void	*ft_free(void *ptr)
 {
-	(void) ps;
-/*
-	if (dlist_size(ps->stack_a) <= 6)
-		return (ps_dfs_sort(ps));
-	return (ps_qsort(ps));
-*/
-	return (0);
-}
-
-void	ps_destroy(t_ps *ps)
-{
-	free(ps->args);
-	dlist_destroy(&ps->stack_a, NULL);
-	dlist_destroy(&ps->stack_b, NULL);
-	dlist_destroy(&ps->operations, NULL);
-	return ;
+	free(ptr);
+	ptr = NULL;
+	return (NULL);
 }

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 21:58:53 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/22 22:19:31 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_ps	ps;
-	int		ret_val;
+	char	*buf;
+	char	*tmp;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	if (!(buf = (char *)malloc(len + 1)))
+		return (NULL);
+	*buf = 0;
+	if (start > ft_strlen(s))
+		return (buf);
+	if (len == 0)
+		return (buf);
+	s += start;
+	tmp = buf;
+	while (len-- && *s)
+		*tmp++ = *s++;
+	*tmp = 0;
+	return (buf);
 }
