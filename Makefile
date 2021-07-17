@@ -6,14 +6,17 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/11 16:16:47 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/17 17:33:42 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 SRCDIR = ./src/
 SRCNAMES = main.c\
-		   push_swap.c
+		   push_swap.c\
+		   ps_init.c\
+		   coordinate_compression.c\
+		   print_debug.c
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJDIR = ./obj/
 OBJS = $(SRCNAMES:%.c=$(OBJDIR)%.o)
