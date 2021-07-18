@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:55:54 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 10:50:27 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 12:51:59 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,23 @@ bool	is_arranged(t_ps *ps)
 	return (true);
 }
 
+int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
+{
+	int		min_cost;
+
+	if (depth > dfs->max_depth)
+		return (INT_MAX);
+	if (is_arranged(ps))
+		return (depth);
+	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
+	if (operate(ps, *op) < 0)
+		return (INT_MAX);
+	min_cost = search_next_node(ps, dfs, depth);
+	ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
+	restore(ps, *op);
+	return (min_cost);
+}
+
 int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 {
 	int		cost;
@@ -100,23 +117,6 @@ int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 		ft_lstclear(&dfs->optim_op, NULL);
 		dfs->optim_op = ft_lstcopy(dfs->node_op);
 	}
-	return (min_cost);
-}
-
-int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
-{
-	int		min_cost;
-
-	if (depth > dfs->max_depth)
-		return (INT_MAX);
-	if (is_arranged(ps))
-		return (depth);
-	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
-	if (operate(ps, *op) < 0)
-		return (INT_MAX);
-	min_cost = search_next_node(ps, dfs, depth);
-	ft_lstpop_front(&dfs->node_op, NULL);
-	restore(ps, *op);
 	return (min_cost);
 }
 
