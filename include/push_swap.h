@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:24:01 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:30:21 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "../libdlist/include/dlist.h"
 # include "../libft/libft.h"
 
 # define DFS_NLIM 6
@@ -75,10 +74,12 @@ void	ps_destroy(t_ps *ps);
 int		ps_error(t_errno e);
 
 /*
- * ps_sort.c
+ * dfs_sort.c
  */
 int		search_next_node(t_ps *ps, t_dfs *dfs, int depth);
 int		ps_dfs_sort(t_ps *ps);
+
+
 int		ps_qsort(t_ps *ps);
 
 /*
