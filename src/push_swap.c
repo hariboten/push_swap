@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 15:20:33 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:54:32 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,6 @@ char	*op_get_name(t_op op)
 	return ("invalid operation");
 }
 
-void	ps_output(t_ps *ps)
-{
-	t_list *it;
-
-	it = ps->operations;
-	while (it)
-	{
-		ft_putendl_fd(op_get_name(*(t_op *)ps->operations->content), 1);
-		it = it->next;
-	}
-	return ;
-}
-
 int		push_swap(t_ps *ps)
 {
 	int		ret_val;
@@ -74,7 +61,7 @@ int		push_swap(t_ps *ps)
 	/*
 	 * return (ps_qsort(ps));
 	 */
-	ps_output(ps);
+	print_oplst(ps->operations);
 	return (ret_val);
 }
 

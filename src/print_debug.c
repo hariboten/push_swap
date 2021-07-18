@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:52:34 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 16:22:28 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:54:06 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	print_args(t_ps *ps)
 
 void	print_oplst(t_list *oplst)
 {
-	while (oplst)
-	{
-		ft_putendl_fd(op_get_name(*(t_op *)oplst->content), 1);
-		oplst = oplst->next;
-	}
+	if (!oplst)
+		return;
+	print_oplst(oplst->next);
+	ft_putendl_fd(op_get_name(*(t_op *)oplst->content), 1);
+	return ;
 }
 
 void	init_print_debug(t_ps *ps)

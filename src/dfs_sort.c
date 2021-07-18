@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:55:54 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 16:16:49 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:56:26 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 	{
 		ps->operations = ft_lstcopy(dfs->node_op, NULL);
 		restore(ps, *op);
+		ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
 		return (1);
 	}
 	ret = search_next_node(ps, dfs, depth);
@@ -126,6 +127,8 @@ int		ps_dfs_sort(t_ps *ps)
 
 	dfs.node_op = NULL;
 	dfs.max_depth = 1;
+	if (is_arranged(ps))
+		return (0);
 	while (search_next_node(ps, &dfs, 0) != 1)
 		dfs.max_depth++;
 	ft_lstclear(&dfs.node_op, NULL);
