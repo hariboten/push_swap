@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:53:27 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 15:18:02 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,46 @@ int		ps_error(t_errno e)
 	return (-1);
 }
 
+char	*op_get_name(t_op op)
+{
+	if (op == OP_SA)
+		return ("sa");
+	if (op == OP_SB)
+		return ("sb");
+	if (op == OP_SS)
+		return ("ss");
+	if (op == OP_PA)
+		return ("pa");
+	if (op == OP_PB)
+		return ("pb");
+	if (op == OP_RA)
+		return ("ra");
+	if (op == OP_RB)
+		return ("rb");
+	if (op == OP_RR)
+		return ("rr");
+	if (op == OP_RRA)
+		return ("rra");
+	if (op == OP_RRB)
+		return ("rrb");
+	if (op == OP_RRR)
+		return ("rrr");
+	return ("invalid operation");
+}
+
+void	ps_output(t_ps *ps)
+{
+	t_list *it;
+
+	it = ps->operations;
+	while (it)
+	{
+		ft_putendl_fd(op_get_name(*(t_op *)ps->operations->content), 1);
+		it = it->next;
+	}
+	return ;
+}
+
 int		push_swap(t_ps *ps)
 {
 	if (ft_lstsize(ps->stack_a) <= DFS_NLIM)
@@ -28,6 +68,7 @@ int		push_swap(t_ps *ps)
 	/*
 	 * return (ps_qsort(ps));
 	 */
+	ps_output(ps);
 	return (0);
 }
 
