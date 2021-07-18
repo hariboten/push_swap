@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 13:52:06 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:11:56 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,24 @@ static int		input_arguments(t_ps *ps, int argc, char **argv)
 	return (0);
 }
 
-static t_dlist	*llarr2dlist(t_ll *arr, size_t len)
+static t_list	*llarr2lst(t_ll *arr, size_t len, void (*del)(void *))
 {
-	t_dlist *newlst;
-	t_dlist *tmp;
-	int		i;
+	t_list *lst;
+	t_list *new_node;
 
-	newlst = NULL;
-	i = len;
-	while (--i >= 0)
+	if (!len)
+		return (NULL);
+	lst = llarr2lst(arr + 1, len - 1, del);
+	if (!lst && len - 1 != 0)
+		return (NULL);
+	new_node = ft_lstnew(arr);
+	if (!new_node)
 	{
-		tmp = dlist_new((void *)arr[i]);
-		if (!tmp)
-		{
-			dlist_destroy(&newlst, NULL);
-			ps_error(E_ALLOC);
-			return (NULL);
-		}
-		dlist_push_front(&newlst, tmp);
+		ft_lstclear(&lst, del);
+		return (NULL);
 	}
-	return (newlst);
+	ft_lstadd_front(&lst, new_node);
+	return (lst);
 }
 
 t_op		*init_op_arr()
@@ -128,7 +126,7 @@ int				ps_init(t_ps *ps, int argc, char **argv)
 	if (!order)
 		return (ps_error(E_ALLOC));
 	ret_val = coordinate_compression(order, ps->args, ps->arg_num);
-	ps->stack_a = llarr2dlist(order, ps->arg_num);
+	ps->stack_a = llarr2lst(order, ps->arg_num, NULL);
 	free(order);
 	if (ret_val || !ps->stack_a)
 		return (-1);
