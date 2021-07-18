@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:55:54 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 12:51:59 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:24:27 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	is_arranged(t_ps *ps)
 	it = ps->stack_a;
 	while (it && it->next)
 	{
-		if ((t_ll)it->content > (t_ll)it->next->content)
+		if (*(int *)it->content > *(int *)it->next->content)
 			return (false);
 		it = it->next;
 	}
@@ -115,7 +115,7 @@ int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 			continue ;
 		min_cost = cost;
 		ft_lstclear(&dfs->optim_op, NULL);
-		dfs->optim_op = ft_lstcopy(dfs->node_op);
+		dfs->optim_op = ft_lstcopy(dfs->node_op, NULL);
 	}
 	return (min_cost);
 }

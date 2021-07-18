@@ -6,16 +6,16 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 10:37:24 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:20:05 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:16:06 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-static bool	has_duplication(t_ll *arr, size_t len)
+static bool	has_duplication(int *arr, size_t len)
 {
 	size_t	i;
-	t_ll	prev;
+	int	prev;
 
 	prev = arr[0];
 	i = 1;
@@ -31,7 +31,7 @@ static bool	has_duplication(t_ll *arr, size_t len)
 /*
  * using binary search.
  */
-static void	ordering(t_ll *order, t_ll *sorted, size_t len)
+static void	ordering(int *order, int *sorted, size_t len)
 {
 	size_t	i;
 	int		ok;
@@ -64,21 +64,21 @@ static void	ordering(t_ll *order, t_ll *sorted, size_t len)
  * - copy args to order arr.
  * - search order number.
  */
-int		coordinate_compression(t_ll *order, t_ll *arr, size_t len)
+int		coordinate_compression(int *order, int *arr, size_t len)
 {
-	t_ll	*sorted;
+	int	*sorted;
 
-	sorted = malloc(len * sizeof(t_ll));
+	sorted = malloc(len * sizeof(int));
 	if (!sorted)
 		return (ps_error(E_ALLOC));
-	ft_memcpy(sorted, arr, len * sizeof(t_ll));
-	qsort_ll(sorted, len, less_ll);
+	ft_memcpy(sorted, arr, len * sizeof(int));
+	qsorti(sorted, len, lessi);
 	if (has_duplication(sorted, len))
 	{
 		free(sorted);
 		return (ps_error(E_INVARG));
 	}
-	ft_memcpy(order, arr, len * sizeof(t_ll));
+	ft_memcpy(order, arr, len * sizeof(int));
 	ordering(order, sorted, len);
 	free(sorted);
 	return (0);

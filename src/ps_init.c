@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:21:58 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:57:26 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,46 @@ static int		input_arguments(t_ps *ps, int argc, char **argv)
 	{
 		if (is_invalid_arg(argv[i + 1]))
 			return (ps_error(E_INVARG));
-		ps->args[i] = (t_ll)ft_atoi(argv[i + 1]);
+		ps->args[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
 	return (0);
 }
 
-static t_dlist	*llarr2dlist(t_ll *arr, size_t len)
+static t_list	*arr2lst(int *arr, size_t len, void (*del)(void *))
 {
-	t_dlist *newlst;
-	t_dlist *tmp;
-	int		i;
+	t_list *lst;
+	t_list *new_node;
 
-	newlst = NULL;
-	i = len;
-	while (--i >= 0)
+	if (!len)
+		return (NULL);
+	lst = arr2lst(arr + 1, len - 1, del);
+	if (!lst && len - 1 != 0)
+		return (NULL);
+	new_node = ft_lstnew(arr);
+	if (!new_node)
 	{
-		tmp = dlist_new((void *)arr[i]);
-		if (!tmp)
-		{
-			dlist_destroy(&newlst, NULL);
-			ps_error(E_ALLOC);
-			return (NULL);
-		}
-		dlist_push_front(&newlst, tmp);
+		ft_lstclear(&lst, del);
+		return (NULL);
 	}
-	return (newlst);
+	ft_lstadd_front(&lst, new_node);
+	return (lst);
+}
+
+t_op		*init_op_arr()
+{
+	t_op	*op_arr;
+	t_op	*it;
+	t_op	op;
+
+	op_arr = malloc((OP_NULL + 1) * sizeof(t_op));
+	if (!op_arr)
+		return (NULL);
+	op = 0;
+	it = op_arr;
+	while (op <= OP_NULL)
+		*it++ = op++;
+	return (op_arr);
 }
 
 /*
@@ -95,25 +109,23 @@ static t_dlist	*llarr2dlist(t_ll *arr, size_t len)
  */
 int				ps_init(t_ps *ps, int argc, char **argv)
 {
-	t_ll	*order;
-	int		ret_val;
-
 	ps->arg_num = argc - 1;
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
-	ps->args = malloc(ps->arg_num * sizeof(t_ll));
-	if (!ps->args)
+	ps->args = malloc(ps->arg_num * sizeof(int));
+	ps->op_arr = init_op_arr();
+	if (!ps->args || !ps->op_arr)
 		return (ps_error(E_ALLOC));
 	if (input_arguments(ps, argc, argv))
 		return (-1);
-	order = malloc(ps->arg_num * sizeof(t_ll));
-	if (!order)
+	ps->order = malloc(ps->arg_num * sizeof(int));
+	if (!ps->order)
 		return (ps_error(E_ALLOC));
-	ret_val = coordinate_compression(order, ps->args, ps->arg_num);
-	ps->stack_a = llarr2dlist(order, ps->arg_num);
-	free(order);
-	if (ret_val || !ps->stack_a)
+	if (coordinate_compression(ps->order, ps->args, ps->arg_num))
+		return (-1);
+	ps->stack_a = arr2lst(ps->order, ps->arg_num, NULL);
+	if (!ps->stack_a)
 		return (-1);
 	return (0);
 }
