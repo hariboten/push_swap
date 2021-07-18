@@ -6,13 +6,13 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 14:24:28 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:59:08 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:18:42 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-int		less_ll(t_ll a, t_ll b)
+int		lessi(int a, int b)
 {
 	if (a < b)
 		return (-1);
@@ -21,16 +21,16 @@ int		less_ll(t_ll a, t_ll b)
 	return (0);
 }
 
-static void swap_ll(t_ll *a, t_ll *b)
+static void swapi(int *a, int *b)
 {
-	t_ll	tmp;
+	int	tmp;
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
 	return ;
 }
 
-static int	partition(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll))
+static int	partition(int *arr, size_t len, int (*cmp)(int, int))
 {
 	int		pivot;
 	int		left;
@@ -47,21 +47,21 @@ static int	partition(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll))
 			right--;
 		if (left == right)
 			break ;
-		swap_ll(arr + left, arr + right);
+		swapi(arr + left, arr + right);
 	}
 	if (left != pivot)
-		swap_ll(arr + left, arr + pivot);
+		swapi(arr + left, arr + pivot);
 	return (left);
 }
 
-void	qsort_ll(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll))
+void	qsorti(int *arr, size_t len, int (*cmp)(int, int))
 {
 	int		p;
 
 	if (len < 2)
 		return ;
 	p = partition(arr, len, cmp);
-	qsort_ll(arr, p, cmp);
-	qsort_ll(arr + p + 1, len - p - 1, cmp);
+	qsorti(arr, p, cmp);
+	qsorti(arr + p + 1, len - p - 1, cmp);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 13:47:51 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:15:04 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef enum e_op
 struct	s_ps
 {
 	size_t	arg_num;
-	t_ll	*args;
+	int		*args;
 	t_op	*op_arr;
 	t_list	*stack_a;
 	t_list	*stack_b;
@@ -81,10 +81,10 @@ int		ps_dfs_sort(t_ps *ps);
 int		ps_qsort(t_ps *ps);
 
 /*
- * qsort_ll.c
+ * qsorti.c
  */
-int		less_ll(t_ll a, t_ll b);
-void	qsort_ll(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll));
+int		lessi(int a, int b);
+void	qsorti(int *arr, size_t len, int (*cmp)(int, int));
 
 /*
  * ps_init.c
@@ -94,7 +94,7 @@ int		ps_init(t_ps *ps, int argc, char **argv);
 /*
  * coordinate_compression.c
  */
-int		coordinate_compression(t_ll *order, t_ll *arr, size_t len);
+int		coordinate_compression(int *order, int *arr, size_t len);
 
 /*
  * print_debug.c

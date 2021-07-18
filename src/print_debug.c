@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:52:34 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:30:46 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:20:11 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_stack(t_ps *ps, t_dlist *stack)
 	(void)ps;
 	while (stack)
 	{
-		text = ft_itoa((t_ll)stack->content);
+		text = ft_itoa(*(int *)stack->content);
 		ft_putendl_fd(text, 1);
 		free(text);
 		stack = stack->next;
