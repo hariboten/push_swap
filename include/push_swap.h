@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:44:46 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 09:18:28 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define DFS_NLIM 6
 
 typedef struct s_ps t_ps;
-typedef	struct s_op t_op;
 typedef	long long t_ll;
 
 struct	s_ps
@@ -35,12 +34,6 @@ struct	s_ps
 	t_dlist	*operations;
 };
 
-struct	s_op
-{
-	char	*operation;
-	void	(*op_func)(t_op *);
-};
-
 typedef enum e_errno
 {
 	E_FEWARG = 1,
@@ -48,6 +41,21 @@ typedef enum e_errno
 	E_ALLOC
 }			t_errno;
 
+typedef enum e_op
+{
+	OP_SA = 0,
+	OP_SB,
+	OP_SS,
+	OP_PA,
+	OP_PB,
+	OP_RA,
+	OP_RB,
+	OP_RR,
+	OP_RRA,
+	OP_RRB,
+	OP_RRR,
+	OP_NULL
+}			t_op;
 
 /*
  * push_swap.c
@@ -71,29 +79,29 @@ void	qsort_ll(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll));
 /*
  * op_func_swap.c
  */
-void	op_sa(t_ps *ps);
-void	op_sb(t_ps *ps);
-void	op_ss(t_ps *ps);
+int		op_sa(t_ps *ps);
+int		op_sb(t_ps *ps);
+int		op_ss(t_ps *ps);
 
 /*
  * op_func_push.c
  */
-void	op_pa(t_ps *ps);
-void	op_pb(t_ps *ps);
+int		op_pa(t_ps *ps);
+int		op_pb(t_ps *ps);
 
 /*
  * op_func_rotate.c
  */
-void	op_ra(t_ps *ps);
-void	op_rb(t_ps *ps);
-void	op_rr(t_ps *ps);
+int		op_ra(t_ps *ps);
+int		op_rb(t_ps *ps);
+int		op_rr(t_ps *ps);
 
 /*
  * op_func_rev_rotate.c
  */
-void	op_rra(t_ps *ps);
-void	op_rrb(t_ps *ps);
-void	op_rrr(t_ps *ps);
+int		op_rra(t_ps *ps);
+int		op_rrb(t_ps *ps);
+int		op_rrr(t_ps *ps);
 
 /*
  * ps_init.c
