@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:47:53 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 13:58:13 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		push_swap(t_ps *ps)
 void	ps_destroy(t_ps *ps)
 {
 	free(ps->args);
+	free(ps->op_arr);
 	dlist_destroy(&ps->stack_a, NULL);
 	dlist_destroy(&ps->stack_b, NULL);
 	dlist_destroy(&ps->operations, NULL);
