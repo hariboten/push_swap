@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:57:26 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 15:37:49 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,10 @@ int				ps_init(t_ps *ps, int argc, char **argv)
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
+	ps->args = NULL;
+	ps->op_arr =NULL;
+	if (argc < 2)
+		return (ps_error(E_FEWARG));
 	ps->args = malloc(ps->arg_num * sizeof(int));
 	ps->op_arr = init_op_arr();
 	if (!ps->args || !ps->op_arr)
