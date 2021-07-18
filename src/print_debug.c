@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:52:34 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:36:06 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:22:28 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ void	print_args(t_ps *ps)
 		text = ft_itoa(ps->args[i++]);
 		ft_putendl_fd(text, 1);
 		free(text);
+	}
+}
+
+void	print_oplst(t_list *oplst)
+{
+	while (oplst)
+	{
+		ft_putendl_fd(op_get_name(*(t_op *)oplst->content), 1);
+		oplst = oplst->next;
 	}
 }
 
