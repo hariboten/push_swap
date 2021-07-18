@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sort.c                                          :+:      :+:    :+:   */
+/*   dfs_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:55:54 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:24:27 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 15:31:43 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,15 @@ int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 
 	if (depth > dfs->max_depth)
 		return (INT_MAX);
-	if (is_arranged(ps))
-		return (depth);
-	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
 	if (operate(ps, *op) < 0)
 		return (INT_MAX);
+	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
+	if (is_arranged(ps))
+	{
+		dfs->optim_op = dfs->node_op;
+		restore(ps, *op);
+		return (depth);
+	}
 	min_cost = search_next_node(ps, dfs, depth);
 	ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
 	restore(ps, *op);
@@ -106,6 +110,7 @@ int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 	t_op	*next_op;
 
 	next_op = ps->op_arr;
+	min_cost = INT_MAX;
 	while (*next_op != OP_NULL)
 	{
 		cost = dfs_rec(ps, dfs, next_op++, depth + 1);
@@ -134,7 +139,6 @@ int		ps_dfs_sort(t_ps *ps)
 		min_cost = search_next_node(ps, &dfs, 0);
 		dfs.max_depth++;
 	}
-	ps->operations = dfs.optim_op;
 	ft_lstclear(&dfs.node_op, NULL);
 	return (min_cost);
 }
