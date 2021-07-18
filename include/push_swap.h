@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:51:41 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:55:07 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ struct	s_ps
 struct	s_dfs
 {
 	t_list	*node_op;
-	t_list	*optim_op;
 	int		max_depth;
 };
 
 /*
  * push_swap.c
  */
+char	*op_get_name(t_op op);
 int		push_swap(t_ps *ps);
 void	ps_destroy(t_ps *ps);
 int		ps_error(t_errno e);
@@ -103,6 +103,8 @@ int		coordinate_compression(int *order, int *arr, size_t len);
  * print_debug.c
  */
 void	init_print_debug(t_ps *ps);
+void	print_stack(t_ps *ps, t_list *stack);
+void	print_oplst(t_list *oplst);
 
 /*
  * list_util.c

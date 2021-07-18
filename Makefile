@@ -6,7 +6,7 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/18 14:30:09 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/18 16:22:51 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCNAMES = main.c \
 		   op_func_swap.c \
 		   op_func_push.c \
 		   op_func_rotate.c \
-		   op_func_rev_rotate.c
+		   op_func_rev_rotate.c \
+		   print_debug.c
 
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJDIR = ./obj/

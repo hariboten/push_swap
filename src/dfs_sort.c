@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sort.c                                          :+:      :+:    :+:   */
+/*   dfs_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 18:55:54 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:24:27 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 16:56:26 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int		restore(t_ps *ps, t_op op)
 {
 	if (op == OP_SA)
-		return (op_sb(ps));
-	if (op == OP_SB)
 		return (op_sa(ps));
+	if (op == OP_SB)
+		return (op_sb(ps));
 	if (op == OP_SS)
 		return (op_ss(ps));
 	if (op == OP_PA)
@@ -84,57 +84,53 @@ bool	is_arranged(t_ps *ps)
 
 int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 {
-	int		min_cost;
+	int		ret;
 
 	if (depth > dfs->max_depth)
-		return (INT_MAX);
-	if (is_arranged(ps))
-		return (depth);
-	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
+		return (0);
 	if (operate(ps, *op) < 0)
-		return (INT_MAX);
-	min_cost = search_next_node(ps, dfs, depth);
+		return (0);
+	ft_lstadd_front(&dfs->node_op, ft_lstnew(op));
+	if (is_arranged(ps))
+	{
+		ps->operations = ft_lstcopy(dfs->node_op, NULL);
+		restore(ps, *op);
+		ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
+		return (1);
+	}
+	ret = search_next_node(ps, dfs, depth);
 	ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
 	restore(ps, *op);
-	return (min_cost);
+	return (ret);
 }
 
 int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 {
-	int		cost;
-	int		min_cost;
+	int		ret;
 	t_op	*next_op;
 
 	next_op = ps->op_arr;
 	while (*next_op != OP_NULL)
 	{
-		cost = dfs_rec(ps, dfs, next_op++, depth + 1);
-		if (cost < 0)
+		ret = dfs_rec(ps, dfs, next_op++, depth + 1);
+		if (ret < 0)
 			return (-1);
-		if (cost >= min_cost)
-			continue ;
-		min_cost = cost;
-		ft_lstclear(&dfs->optim_op, NULL);
-		dfs->optim_op = ft_lstcopy(dfs->node_op, NULL);
+		if (ret == 1)
+			break ;
 	}
-	return (min_cost);
+	return (ret);
 }
 
 int		ps_dfs_sort(t_ps *ps)
 {
-	int		min_cost;
 	t_dfs	dfs;
 
 	dfs.node_op = NULL;
-	dfs.optim_op = NULL;
 	dfs.max_depth = 1;
-	min_cost = INT_MAX;
-	while (min_cost == INT_MAX)
-	{
-		min_cost = search_next_node(ps, &dfs, 0);
+	if (is_arranged(ps))
+		return (0);
+	while (search_next_node(ps, &dfs, 0) != 1)
 		dfs.max_depth++;
-	}
-	ps->operations = dfs.optim_op;
 	ft_lstclear(&dfs.node_op, NULL);
-	return (min_cost);
+	return (0);
 }
