@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:53:04 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:57:26 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ t_op		*init_op_arr()
 	t_op	*it;
 	t_op	op;
 
-	op_arr = malloc(OP_NULL * sizeof(t_op));
+	op_arr = malloc((OP_NULL + 1) * sizeof(t_op));
 	if (!op_arr)
 		return (NULL);
 	op = 0;
 	it = op_arr;
-	while (op != OP_NULL)
+	while (op <= OP_NULL)
 		*it++ = op++;
 	return (op_arr);
 }
