@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 09:18:28 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 10:48:52 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,15 @@
 # define DFS_NLIM 6
 
 typedef struct s_ps t_ps;
+typedef	struct s_dfs t_dfs;
 typedef	long long t_ll;
-
-struct	s_ps
-{
-	size_t	arg_num;
-	t_ll	*args;
-	t_dlist	*stack_a;
-	t_dlist	*stack_b;
-	t_dlist	*operations;
-};
 
 typedef enum e_errno
 {
 	E_FEWARG = 1,
 	E_INVARG,
-	E_ALLOC
+	E_ALLOC,
+	E_INVOP
 }			t_errno;
 
 typedef enum e_op
@@ -56,6 +49,23 @@ typedef enum e_op
 	OP_RRR,
 	OP_NULL
 }			t_op;
+
+struct	s_ps
+{
+	size_t	arg_num;
+	t_ll	*args;
+	t_dlist	*stack_a;
+	t_dlist	*stack_b;
+	t_dlist	*operations;
+	t_op	*op_arr;
+};
+
+struct	s_dfs
+{
+	t_list	*node_op;
+	t_list	*optim_op;
+	int		max_depth;
+};
 
 /*
  * push_swap.c
