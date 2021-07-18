@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:10:52 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 12:19:55 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 13:29:37 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ int		op_pa(t_ps *ps)
 	if (!ps->stack_b)
 		return (-1);
 	to_push = ft_lstpop_front(&ps->stack_b);
-	/*
-	 * to_push = ps->stack_b;
-	 * ps->stack_b = ps->stack_b->next;
-	 * to_push->next = NULL;
-	 */
 	ft_lstadd_front(&ps->stack_a, to_push);
 	return (0);
 }

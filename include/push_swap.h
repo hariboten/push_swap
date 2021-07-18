@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 12:08:42 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 13:20:41 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,28 @@ int		less_ll(t_ll a, t_ll b);
 void	qsort_ll(t_ll *arr, size_t len, int (*cmp)(t_ll, t_ll));
 
 /*
+ * ps_init.c
+ */
+int		ps_init(t_ps *ps, int argc, char **argv);
+
+/*
+ * coordinate_compression.c
+ */
+int		coordinate_compression(t_ll *order, t_ll *arr, size_t len);
+
+/*
+ * print_debug.c
+ */
+void	init_print_debug(t_ps *ps);
+
+/*
+ * list_util.c
+ */
+t_list	*ft_lstcopy(t_list *src, void (*del)(void *));
+t_list	*ft_lstpop_front(t_list **lst);
+t_list	*ft_lstpop_back(t_list **lst);
+
+/*
  * op_func_swap.c
  */
 int		op_sa(t_ps *ps);
@@ -112,20 +134,4 @@ int		op_rr(t_ps *ps);
 int		op_rra(t_ps *ps);
 int		op_rrb(t_ps *ps);
 int		op_rrr(t_ps *ps);
-
-/*
- * ps_init.c
- */
-int		ps_init(t_ps *ps, int argc, char **argv);
-
-/*
- * coordinate_compression.c
- */
-int		coordinate_compression(t_ll *order, t_ll *arr, size_t len);
-
-/*
- * print_debug.c
- */
-void	init_print_debug(t_ps *ps);
-
 #endif
