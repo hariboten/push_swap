@@ -6,16 +6,24 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/18 14:35:00 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/18 14:38:11 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = test_init
 SRCDIR = ../src/
-SRCNAMES = push_swap.c\
-		   ps_init.c\
-		   coordinate_compression.c\
-		   qsorti.c\
+SRCNAMES = \
+		   push_swap.c \
+		   dfs_sort.c \
+		   ps_init.c \
+		   coordinate_compression.c \
+		   qsorti.c \
+		   list_util.c \
+		   op_func_swap.c \
+		   op_func_push.c \
+		   op_func_rotate.c \
+		   op_func_rev_rotate.c
+
 		   print_debug.c
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
 TESTMAIN = test_init.c
