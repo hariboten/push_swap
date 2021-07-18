@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 18:21:58 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 13:52:06 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,22 @@ static t_dlist	*llarr2dlist(t_ll *arr, size_t len)
 	return (newlst);
 }
 
+t_op		*init_op_arr()
+{
+	t_op	*op_arr;
+	t_op	*it;
+	t_op	op;
+
+	op_arr = malloc(OP_NULL * sizeof(t_op));
+	if (!op_arr)
+		return (NULL);
+	op = 0;
+	it = op_arr;
+	while (op != OP_NULL)
+		*it++ = op++;
+	return (op_arr);
+}
+
 /*
  * ps_init
  * - initilize ps object
@@ -103,7 +119,8 @@ int				ps_init(t_ps *ps, int argc, char **argv)
 	ps->stack_b = NULL;
 	ps->operations = NULL;
 	ps->args = malloc(ps->arg_num * sizeof(t_ll));
-	if (!ps->args)
+	ps->op_arr = init_op_arr();
+	if (!ps->args || !ps->op_arr)
 		return (ps_error(E_ALLOC));
 	if (input_arguments(ps, argc, argv))
 		return (-1);
