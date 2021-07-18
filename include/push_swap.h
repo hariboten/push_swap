@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 14:30:14 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:30:21 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:51:41 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ struct	s_ps
 {
 	size_t	arg_num;
 	int		*args;
+	int		*order;
 	t_op	*op_arr;
 	t_list	*stack_a;
 	t_list	*stack_b;

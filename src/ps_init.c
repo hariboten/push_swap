@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:54:40 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:14:03 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:53:04 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ static int		input_arguments(t_ps *ps, int argc, char **argv)
 	return (0);
 }
 
-static t_list	*llarr2lst(int *arr, size_t len, void (*del)(void *))
+static t_list	*arr2lst(int *arr, size_t len, void (*del)(void *))
 {
 	t_list *lst;
 	t_list *new_node;
 
 	if (!len)
 		return (NULL);
-	lst = llarr2lst(arr + 1, len - 1, del);
+	lst = arr2lst(arr + 1, len - 1, del);
 	if (!lst && len - 1 != 0)
 		return (NULL);
 	new_node = ft_lstnew(arr);
@@ -109,9 +109,6 @@ t_op		*init_op_arr()
  */
 int				ps_init(t_ps *ps, int argc, char **argv)
 {
-	int	*order;
-	int		ret_val;
-
 	ps->arg_num = argc - 1;
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
@@ -122,13 +119,13 @@ int				ps_init(t_ps *ps, int argc, char **argv)
 		return (ps_error(E_ALLOC));
 	if (input_arguments(ps, argc, argv))
 		return (-1);
-	order = malloc(ps->arg_num * sizeof(int));
-	if (!order)
+	ps->order = malloc(ps->arg_num * sizeof(int));
+	if (!ps->order)
 		return (ps_error(E_ALLOC));
-	ret_val = coordinate_compression(order, ps->args, ps->arg_num);
-	ps->stack_a = llarr2lst(order, ps->arg_num, NULL);
-	free(order);
-	if (ret_val || !ps->stack_a)
+	if (coordinate_compression(ps->order, ps->args, ps->arg_num))
+		return (-1);
+	ps->stack_a = arr2lst(ps->order, ps->arg_num, NULL);
+	if (!ps->stack_a)
 		return (-1);
 	return (0);
 }

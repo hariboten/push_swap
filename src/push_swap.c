@@ -6,7 +6,7 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 13:59:03 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:53:27 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ps_destroy(t_ps *ps)
 {
 	free(ps->args);
 	free(ps->op_arr);
+	free(ps->order);
 	ft_lstclear(&ps->stack_a, NULL);
 	ft_lstclear(&ps->stack_b, NULL);
 	ft_lstclear(&ps->operations, NULL);
