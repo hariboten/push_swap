@@ -6,13 +6,13 @@
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 16:52:34 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/18 14:20:11 by ewatanab         ###   ########.fr       */
+/*   Updated: 2021/07/18 14:36:06 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	print_stack(t_ps *ps, t_dlist *stack)
+void	print_stack(t_ps *ps, t_list *stack)
 {
 	char 	*text;
 
