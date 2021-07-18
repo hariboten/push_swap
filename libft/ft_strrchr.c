@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 17:07:28 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/22 17:10:40 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_ps	ps;
-	int		ret_val;
+	unsigned	char	ch;
+	const		char	*ptr;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	ch = c;
+	ptr = NULL;
+	while (*s)
+	{
+		if (*s == ch)
+			ptr = s;
+		s++;
+	}
+	if (*s == ch)
+		ptr = s;
+	return ((char *)ptr);
 }

@@ -6,26 +6,26 @@
 #    By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/07 14:55:05 by ewatanab          #+#    #+#              #
-#    Updated: 2021/07/17 17:49:26 by ewatanab         ###   ########.fr        #
+#    Updated: 2021/07/17 17:48:15 by ewatanab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-SRCDIR = ./src/
-SRCNAMES = main.c\
-		   push_swap.c\
+NAME = test_init
+SRCDIR = ../src/
+SRCNAMES = push_swap.c\
 		   ps_init.c\
 		   coordinate_compression.c\
 		   qsort_ll.c\
 		   print_debug.c
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
-OBJDIR = ./obj/
-OBJS = $(SRCNAMES:%.c=$(OBJDIR)%.o)
-INCLUDEDIR = ./include/
+TESTMAIN = test_init.c
+OBJDIR = ../obj/
+OBJS = $(SRCNAMES:%.c=$(OBJDIR)%.o) test_init.o
+INCLUDEDIR = ../include/
 
-LIBFTDIR = ./libft/
+LIBFTDIR = ../libft/
 LIBFT = libft.a
-LIBDLISTDIR = ./libdlist/
+LIBDLISTDIR = ../libdlist/
 LIBDLIST = libdlist.a
 
 CC = gcc
@@ -37,6 +37,9 @@ $(NAME) : $(OBJS)
 	make -C $(LIBDLISTDIR)
 	make -C $(LIBFTDIR)
 	$(CC) $(CFLAGS) -o $@ $^ -L $(LIBFTDIR) -lft -L $(LIBDLISTDIR) -ldlist
+
+test_init.o : test_init.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJDIR) :
 	mkdir -p $@

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:43:44 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 15:18:35 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/22 14:49:03 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/24 14:43:39 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-	t_ps	ps;
-	int		ret_val;
+	unsigned	char	*dptr;
+	unsigned	char	*sptr;
 
-	ret_val = ps_init(&ps, argc, argv);
-	if (ret_val == 0)
-		ret_val = push_swap(&ps);
-	ps_destroy(&ps);
-	return (ret_val);
+	if (dest == src)
+		return (dest);
+	dptr = (unsigned char *)dest;
+	sptr = (unsigned char *)src;
+	while (len--)
+		*dptr++ = *sptr++;
+	return (dest);
 }

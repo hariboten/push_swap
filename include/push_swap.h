@@ -67,6 +67,14 @@ struct	s_dfs
 	int		max_depth;
 };
 
+typedef enum e_errno
+{
+	E_FEWARG = 1,
+	E_INVARG,
+	E_ALLOC
+}			t_errno;
+
+
 /*
  * push_swap.c
  */
@@ -112,6 +120,21 @@ int		op_rr(t_ps *ps);
 int		op_rra(t_ps *ps);
 int		op_rrb(t_ps *ps);
 int		op_rrr(t_ps *ps);
+
+/*
+ * ps_init.c
+ */
+int		ps_init(t_ps *ps, int argc, char **argv);
+
+/*
+ * coordinate_compression.c
+ */
+int		coordinate_compression(t_ll *order, t_ll *arr, size_t len);
+
+/*
+ * print_debug.c
+ */
+void	init_print_debug(t_ps *ps);
 
 /*
  * ps_init.c

@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewatanab <ewatanab@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:55:08 by ewatanab          #+#    #+#             */
-/*   Updated: 2021/07/17 17:44:46 by ewatanab         ###   ########.fr       */
+/*   Created: 2020/06/23 14:57:31 by ewatanab          #+#    #+#             */
+/*   Updated: 2020/06/23 15:35:55 by ewatanab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "libft.h"
 
-
-int		ps_error(t_errno e)
+static	void	sub_putnbr_fd(long long ln, int fd)
 {
-	(void) e;
-	ft_putstr_fd("Error\n", 2);
-	return (-1);
+	if (ln == 0)
+		return ;
+	sub_putnbr_fd(ln / 10, fd);
+	ft_putchar_fd((char)(ln % 10) + '0', fd);
+	return ;
 }
 
-int		push_swap(t_ps *ps)
+void			ft_putnbr_fd(int n, int fd)
 {
-	(void) ps;
-/*
-	if (dlist_size(ps->stack_a) <= 6)
-		return (ps_dfs_sort(ps));
-	return (ps_qsort(ps));
-*/
-	return (0);
-}
+	long	long	ln;
 
-void	ps_destroy(t_ps *ps)
-{
-	free(ps->args);
-	dlist_destroy(&ps->stack_a, NULL);
-	dlist_destroy(&ps->stack_b, NULL);
-	dlist_destroy(&ps->operations, NULL);
+	if (n == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return ;
+	}
+	ln = n;
+	if (ln < 0)
+	{
+		ln *= -1;
+		ft_putchar_fd('-', fd);
+	}
+	sub_putnbr_fd(ln, fd);
 	return ;
 }
