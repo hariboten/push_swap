@@ -77,11 +77,28 @@ int		ps_error(t_errno e);
 /*
  * dfs_sort.c
  */
+bool	is_arranged(t_ps *ps);
 int		search_next_node(t_ps *ps, t_dfs *dfs, int depth);
 int		ps_dfs_sort(t_ps *ps);
 
+/*
+ * ps_divaconq.c
+ */
+int		ps_divaconq(t_ps *ps);
 
-int		ps_qsort(t_ps *ps);
+/*
+ * ps_optimizer.c
+ */
+t_list	*ps_optimizer(t_list *operations);
+
+/*
+ * ps_operate.c
+ */
+t_list	*op_lstnew(t_ps *ps, t_op op);
+int		operate3(t_ps *ps, t_op op, t_list **operations);
+char	*op_get_name(t_op op);
+int		restore(t_ps *ps, t_op op);
+int		operate(t_ps *ps, t_op op);
 
 /*
  * qsorti.c
@@ -112,6 +129,8 @@ void	print_oplst(t_list *oplst);
 t_list	*ft_lstcopy(t_list *src, void (*del)(void *));
 t_list	*ft_lstpop_front(t_list **lst);
 t_list	*ft_lstpop_back(t_list **lst);
+void	ft_lstjoin_front(t_list **lst, t_list *newlst);
+void	ft_lstreverse(t_list **lst);
 
 /*
  * op_func_swap.c
