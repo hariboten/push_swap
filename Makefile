@@ -25,6 +25,7 @@ SRCNAMES = main.c \
 		   op_func_rev_rotate.c \
 		   print_debug.c \
 		   ps_operate.c \
+		   ps_optimizer.c \
 		   ps_divaconq.c
 
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))

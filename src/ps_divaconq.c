@@ -51,6 +51,6 @@ int		ps_divaconq(t_ps *ps)
 {
 	if (is_arranged(ps))
 		return (0);
-	ps->operations = divaconq(ps, 0, ft_lstsize(ps->stack_a));
+	ps->operations = ps_optimizer(divaconq(ps, 0, ft_lstsize(ps->stack_a)));
 	return (0);
 }

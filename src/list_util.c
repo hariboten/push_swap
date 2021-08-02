@@ -80,3 +80,18 @@ void	ft_lstjoin_front(t_list **lst, t_list *newlst)
 	*lst = newlst;
 	return ;
 }
+
+void	ft_lstreverse(t_list **lst)
+{
+	t_list	*reversed;
+	t_list	*original;
+
+	reversed = NULL;
+	original = *lst;
+	if (!*lst)
+		return ;
+	while (original)
+		ft_lstadd_front(&reversed, ft_lstpop_front(&original));
+	*lst = reversed;
+}
+
