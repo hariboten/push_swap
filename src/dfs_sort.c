@@ -12,60 +12,6 @@
 
 #include <push_swap.h>
 
-int		restore(t_ps *ps, t_op op)
-{
-	if (op == OP_SA)
-		return (op_sa(ps));
-	if (op == OP_SB)
-		return (op_sb(ps));
-	if (op == OP_SS)
-		return (op_ss(ps));
-	if (op == OP_PA)
-		return (op_pb(ps));
-	if (op == OP_PB)
-		return (op_pa(ps));
-	if (op == OP_RA)
-		return (op_rra(ps));
-	if (op == OP_RB)
-		return (op_rrb(ps));
-	if (op == OP_RR)
-		return (op_rrr(ps));
-	if (op == OP_RRA)
-		return (op_ra(ps));
-	if (op == OP_RRB)
-		return (op_rb(ps));
-	if (op == OP_RRR)
-		return (op_rr(ps));
-	return (ps_error(E_INVOP));
-}
-
-int		operate(t_ps *ps, t_op op)
-{
-	if (op == OP_SA)
-		return (op_sa(ps));
-	if (op == OP_SB)
-		return (op_sb(ps));
-	if (op == OP_SS)
-		return (op_ss(ps));
-	if (op == OP_PA)
-		return (op_pa(ps));
-	if (op == OP_PB)
-		return (op_pb(ps));
-	if (op == OP_RA)
-		return (op_ra(ps));
-	if (op == OP_RB)
-		return (op_rb(ps));
-	if (op == OP_RR)
-		return (op_rr(ps));
-	if (op == OP_RRA)
-		return (op_rra(ps));
-	if (op == OP_RRB)
-		return (op_rrb(ps));
-	if (op == OP_RRR)
-		return (op_rrr(ps));
-	return (ps_error(E_INVOP));
-}
-
 bool	is_arranged(t_ps *ps)
 {
 	t_list	*it;

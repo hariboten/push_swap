@@ -84,6 +84,15 @@ int		ps_dfs_sort(t_ps *ps);
 int		ps_qsort(t_ps *ps);
 
 /*
+ * ps_operate.c
+ */
+t_list	*op_lstnew(t_ps *ps, t_op op);
+int		operate3(t_ps *ps, t_op op, t_list **operations);
+char	*op_get_name(t_op op);
+int		restore(t_ps *ps, t_op op);
+int		operate(t_ps *ps, t_op op);
+
+/*
  * qsorti.c
  */
 int		lessi(int a, int b);

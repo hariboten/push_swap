@@ -12,41 +12,9 @@
 
 #include <push_swap.h>
 
-/*
- * stack_a
- *  - int *content
- *
- * operations
- *  - t_op *content
- */
-
 int		st_top(t_list *stack)
 {
 	return (*(int *)stack->content);
-}
-
-t_list	*op_lstnew(t_ps *ps, t_op op)
-{
-	t_op *p_op_arr;
-
-	p_op_arr = ps->op_arr;
-	while (*p_op_arr != OP_NULL)
-	{
-		if (*p_op_arr == op)
-			return (ft_lstnew(p_op_arr));
-		p_op_arr++;
-	}
-	return (NULL);
-}
-
-int		operate3(t_ps *ps, t_op op, t_list **operations)
-{
-	int		ret;
-
-	ret = operate(ps, op);
-	if (ret == 0)
-		ft_lstadd_back(operations, op_lstnew(ps, op));
-	return (ret);
 }
 
 t_list	*divaconq(t_ps *ps, int begin, int end)
