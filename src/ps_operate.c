@@ -20,7 +20,7 @@ int		operate3(t_ps *ps, t_op op, t_list **operations)
 
 	ret = operate(ps, op);
 	if (ret == 0)
-		ft_lstadd_back(operations, op_lstnew(ps, op));
+		ft_lstadd_front(operations, op_lstnew(ps, op));
 	return (ret);
 }
 

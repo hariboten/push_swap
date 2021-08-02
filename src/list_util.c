@@ -66,3 +66,17 @@ t_list	*ft_lstpop_back(t_list **lst)
 	it->next = NULL;
 	return (back);
 }
+
+void	ft_lstjoin_front(t_list **lst, t_list *newlst)
+{
+	if (!*lst)
+	{
+		*lst = newlst;
+		return ;
+	}
+	if (!newlst)
+		return ;
+	ft_lstlast(newlst)->next = *lst;
+	*lst = newlst;
+	return ;
+}

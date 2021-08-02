@@ -23,7 +23,9 @@ SRCNAMES = main.c \
 		   op_func_push.c \
 		   op_func_rotate.c \
 		   op_func_rev_rotate.c \
-		   print_debug.c
+		   print_debug.c \
+		   ps_operate.c \
+		   ps_divaconq.c
 
 SRCS = $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJDIR = ./obj/

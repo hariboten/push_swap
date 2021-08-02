@@ -124,6 +124,7 @@ void	print_oplst(t_list *oplst);
 t_list	*ft_lstcopy(t_list *src, void (*del)(void *));
 t_list	*ft_lstpop_front(t_list **lst);
 t_list	*ft_lstpop_back(t_list **lst);
+void	ft_lstjoin_front(t_list **lst, t_list *newlst);
 
 /*
  * op_func_swap.c
