@@ -35,12 +35,21 @@ t_list	*divaconq(t_ps *ps, int begin, int end)
 			operate3(ps, OP_RA, &operations);
 	}
 	i = end - pivot;
-	while (--i >= 0)
-		operate3(ps, OP_RRA, &operations);
+	if (ft_lstsize(ps->stack_a) != i)
+		while (--i >= 0)
+			operate3(ps, OP_RRA, &operations);
 	ft_lstadd_back(&operations, divaconq(ps, pivot, end));
 	i = pivot - begin;
 	while (--i >= 0)
 		operate3(ps, OP_PA, &operations);
 	ft_lstadd_back(&operations, divaconq(ps, begin, pivot));
 	return (operations);
+}
+
+int		ps_divaconq(t_ps *ps)
+{
+	if (is_arranged(ps))
+		return (0);
+	ps->operations = divaconq(ps, 0, ft_lstsize(ps->stack_a));
+	return (0);
 }

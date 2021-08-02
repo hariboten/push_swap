@@ -27,13 +27,7 @@ int		push_swap(t_ps *ps)
 	if (ft_lstsize(ps->stack_a) <= DFS_NLIM)
 		ret_val = ps_dfs_sort(ps);
 	else
-	{
-		ft_putstr_fd("have not support more than DFS_NLIM arguments", 2);
-		ret_val = -1;
-	}
-	/*
-	 * return (ps_qsort(ps));
-	 */
+		ret_val = ps_divaconq(ps);
 	print_oplst(ps->operations);
 	return (ret_val);
 }

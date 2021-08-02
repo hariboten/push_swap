@@ -77,11 +77,14 @@ int		ps_error(t_errno e);
 /*
  * dfs_sort.c
  */
+bool	is_arranged(t_ps *ps);
 int		search_next_node(t_ps *ps, t_dfs *dfs, int depth);
 int		ps_dfs_sort(t_ps *ps);
 
-
-int		ps_qsort(t_ps *ps);
+/*
+ * ps_divaconq.c
+ */
+int		ps_divaconq(t_ps *ps);
 
 /*
  * ps_operate.c
