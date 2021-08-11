@@ -37,9 +37,11 @@ static bool		is_invalid_arg(const char *arg)
 			return (true);
 		p++;
 	}
-	if (ft_atoi(arg) == INT_MAX && ft_strcmp(arg, "2147483647"))
+	if (ft_strlen(arg) > 11)
 		return (true);
-	if (ft_atoi(arg) == INT_MIN && ft_strcmp(arg, "-2147483648"))
+	if (ps_atoi(arg) == INT_MAX && ft_strcmp(arg, "2147483647"))
+		return (true);
+	if (ps_atoi(arg) == INT_MIN && ft_strcmp(arg, "-2147483648"))
 		return (true);
 	return (false);
 }

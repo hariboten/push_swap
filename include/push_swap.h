@@ -133,6 +133,11 @@ void	ft_lstjoin_front(t_list **lst, t_list *newlst);
 void	ft_lstreverse(t_list **lst);
 
 /*
+ * ps_atoi.c
+ */
+int		ps_atoi(const char *nptr);
+
+/*
  * op_func_swap.c
  */
 int		op_sa(t_ps *ps);
@@ -158,4 +163,5 @@ int		op_rr(t_ps *ps);
 int		op_rra(t_ps *ps);
 int		op_rrb(t_ps *ps);
 int		op_rrr(t_ps *ps);
+
 #endif
