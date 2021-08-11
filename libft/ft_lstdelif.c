@@ -40,7 +40,8 @@ void	ft_lstdelif(t_list **begin_list, void (*del)(), int (*cmp)(), void *key)
 	}
 }
 
-void	ft_lstdelifb(t_list **begin_list, void (*del)(), bool (*cmp)(), void *key)
+void	ft_lstdelifb(
+		t_list **begin_list, void (*del)(), bool (*cmp)(), void *key)
 {
 	t_list	*prev;
 	t_list	*now;

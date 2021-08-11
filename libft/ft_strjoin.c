@@ -17,14 +17,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*buf;
 	char	*tmp;
 
-	if (!(buf = malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	buf = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!buf)
 		return (NULL);
 	tmp = buf;
-	while ((*tmp++ = *s1++))
-		;
-	tmp--;
-	while ((*tmp++ = *s2++))
-		;
+	while (*s1)
+		*tmp++ = *s1++;
+	while (*s2)
+		*tmp++ = *s2++;
+	*tmp = *s2;
 	return (buf);
 }
 

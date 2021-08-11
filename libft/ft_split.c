@@ -12,6 +12,17 @@
 
 #include "libft.h"
 
+static char	**alloc_container(int i)
+{
+	char	**container;
+
+	container = malloc((i + 1) * sizeof(char *));
+	if (!container)
+		return (NULL);
+	container[i] = NULL;
+	return (container);
+}
+
 static char	**rec(char const *s, char c, int i)
 {
 	char const	*ptr;
@@ -20,18 +31,15 @@ static char	**rec(char const *s, char c, int i)
 	while (*s == c)
 		s++;
 	if (!*s)
-	{
-		if (!(container = malloc((i + 1) * sizeof(char *))))
-			return (NULL);
-		container[i] = NULL;
-		return (container);
-	}
+		return (alloc_container(i));
 	ptr = s;
 	while (*s && *s != c)
 		s++;
-	if (!(ptr = ft_substr(ptr, 0, s - ptr)))
+	ptr = ft_substr(ptr, 0, s - ptr);
+	if (!ptr)
 		return (NULL);
-	if (!(container = rec(s, c, i + 1)))
+	container = rec(s, c, i + 1);
+	if (!container)
 	{
 		free((void *)ptr);
 		return (NULL);
@@ -40,7 +48,7 @@ static char	**rec(char const *s, char c, int i)
 	return (container);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	if (!s)
 		return (NULL);

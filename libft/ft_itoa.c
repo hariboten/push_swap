@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static	int		sub_len(long long n)
+static int	sub_len(long long n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -30,7 +30,7 @@ static	int		sub_len(long long n)
 	return (len);
 }
 
-static	char	*sub_itoa(long long n, char *nptr)
+static char	*sub_itoa(long long n, char *nptr)
 {
 	if (n == 0)
 	{
@@ -42,12 +42,13 @@ static	char	*sub_itoa(long long n, char *nptr)
 	return (nptr + 1);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*nptr;
 	char	*tmp;
 
-	if (!(nptr = (char *)malloc(sub_len(n) + 1)))
+	nptr = (char *)malloc(sub_len(n) + 1);
+	if (!nptr)
 		return (NULL);
 	if (n == 0)
 	{
@@ -57,7 +58,7 @@ char			*ft_itoa(int n)
 	else if (n < 0)
 	{
 		*nptr = '-';
-		tmp = sub_itoa((long long)n * (long long)-1, nptr + 1);
+		tmp = sub_itoa((long long)n * (long long) -1, nptr + 1);
 	}
 	else
 		tmp = sub_itoa(n, nptr);

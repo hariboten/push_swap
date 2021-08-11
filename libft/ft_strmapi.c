@@ -15,9 +15,10 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*new_str;
-	unsigned	int	i;
+	unsigned int	i;
 
-	if (!(new_str = (char *)malloc(ft_strlen(s) + 1)))
+	new_str = (char *)malloc(ft_strlen(s) + 1);
+	if (!new_str)
 		return (NULL);
 	i = 0;
 	while (s[i])

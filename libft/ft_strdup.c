@@ -19,10 +19,12 @@ char	*ft_strdup(const char *str)
 	int		len;
 
 	len = ft_strlen(str);
-	if (!(dup = malloc(len + 1)))
+	dup = malloc(len + 1);
+	if (!dup)
 		return (NULL);
 	ptr = dup;
-	while ((*ptr++ = *str++))
-		;
+	while (*str)
+		*ptr++ = *str++;
+	*ptr = *str;
 	return (dup);
 }

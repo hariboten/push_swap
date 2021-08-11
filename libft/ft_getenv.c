@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static	t_list	*g_env;
+static t_list	*g_env;
 
 void	env_init(char **envp)
 {
@@ -22,7 +22,7 @@ void	env_init(char **envp)
 		ft_lstadd_back(&g_env, ft_lstnew(ft_strdup((*envp)++)));
 }
 
-void	env_destroy()
+void	env_destroy(void)
 {
 	ft_lstclear(&g_env, free);
 }
@@ -38,11 +38,11 @@ char	*ft_getenv(const char *name)
 	tmp = ft_lstfindb(g_env, start_with, key);
 	free(key);
 	if (tmp)
-		return(ft_strchr(tmp->content, '=') + 1);
+		return (ft_strchr(tmp->content, '=') + 1);
 	return (NULL);
 }
 
-int		ft_setenv(const char *name, const char *value, int overwrite)
+int	ft_setenv(const char *name, const char *value, int overwrite)
 {
 	char	*key;
 	t_list	*tmp;

@@ -12,7 +12,12 @@
 
 #include "libft.h"
 
-int		ft_ifree(void *ptr, int ret)
+/*
+ * this is regacy.
+ * not recomannded.
+ */
+
+int	ft_ifree(void *ptr, int ret)
 {
 	free(ptr);
 	ptr = NULL;

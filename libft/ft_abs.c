@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-int			ft_abs(int a)
+int	ft_abs(int a)
 {
 	if (a < 0)
 		return (a * -1);
 	return (a);
 }
 
-long		ft_labs(long a)
+long	ft_labs(long a)
 {
 	if (a < 0)
 		return (a * -1);
@@ -33,7 +33,7 @@ long long	ft_llabs(long long a)
 	return (a);
 }
 
-double		ft_fabs(double a)
+double	ft_fabs(double a)
 {
 	if (a < 0)
 		return (a * -1);

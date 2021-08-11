@@ -19,7 +19,8 @@ void	**ft_lsttov(t_list *lst)
 	void	**ret;
 
 	len = ft_lstsize(lst);
-	if (!(vec = malloc(sizeof(void **) * (len + 1))))
+	vec = malloc(sizeof(void **) * (len + 1));
+	if (!vec)
 		return (NULL);
 	ret = vec;
 	while (lst)
