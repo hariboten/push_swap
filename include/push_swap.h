@@ -21,9 +21,9 @@
 
 # define DFS_NLIM 6
 
-typedef struct s_ps t_ps;
-typedef	struct s_dfs t_dfs;
-typedef	long long t_ll;
+typedef struct s_ps		t_ps;
+typedef struct s_dfs	t_dfs;
+typedef long long		t_ll;
 
 typedef enum e_errno
 {

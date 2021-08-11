@@ -12,8 +12,7 @@
 
 #include <push_swap.h>
 
-
-int		op_pa(t_ps *ps)
+int	op_pa(t_ps *ps)
 {
 	t_list	*to_push;
 
@@ -24,7 +23,7 @@ int		op_pa(t_ps *ps)
 	return (0);
 }
 
-int		op_pb(t_ps *ps)
+int	op_pb(t_ps *ps)
 {
 	t_list	*to_push;
 

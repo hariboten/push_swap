@@ -28,7 +28,7 @@ bool	is_arranged(t_ps *ps)
 	return (true);
 }
 
-int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
+int	dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 {
 	int		ret;
 
@@ -50,7 +50,7 @@ int		dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 	return (ret);
 }
 
-int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
+int	search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 {
 	int		ret;
 	t_op	*next_op;
@@ -67,7 +67,7 @@ int		search_next_node(t_ps *ps, t_dfs *dfs, int depth)
 	return (ret);
 }
 
-int		ps_dfs_sort(t_ps *ps)
+int	ps_dfs_sort(t_ps *ps)
 {
 	t_dfs	dfs;
 

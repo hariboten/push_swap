@@ -22,7 +22,7 @@ static void	st_swap(t_list *stack)
 	return ;
 }
 
-int		op_sa(t_ps *ps)
+int	op_sa(t_ps *ps)
 {
 	if (!ps->stack_a || !ps->stack_a->next)
 		return (-1);
@@ -30,7 +30,7 @@ int		op_sa(t_ps *ps)
 	return (0);
 }
 
-int		op_sb(t_ps *ps)
+int	op_sb(t_ps *ps)
 {
 	if (!ps->stack_b || !ps->stack_b->next)
 		return (-1);
@@ -38,7 +38,7 @@ int		op_sb(t_ps *ps)
 	return (0);
 }
 
-int		op_ss(t_ps *ps)
+int	op_ss(t_ps *ps)
 {
 	if (!ps->stack_a || !ps->stack_a->next)
 		return (-1);

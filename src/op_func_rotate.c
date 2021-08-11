@@ -14,7 +14,7 @@
 
 static void	st_rotate(t_list **stack)
 {
-	t_list *to_back;
+	t_list	*to_back;
 
 	if (!(*stack)->next)
 		return ;
@@ -23,7 +23,7 @@ static void	st_rotate(t_list **stack)
 	return ;
 }
 
-int		op_ra(t_ps *ps)
+int	op_ra(t_ps *ps)
 {
 	if (!ps->stack_a)
 		return (-1);
@@ -31,7 +31,7 @@ int		op_ra(t_ps *ps)
 	return (0);
 }
 
-int		op_rb(t_ps *ps)
+int	op_rb(t_ps *ps)
 {
 	if (!ps->stack_b)
 		return (-1);
@@ -39,7 +39,7 @@ int		op_rb(t_ps *ps)
 	return (0);
 }
 
-int		op_rr(t_ps *ps)
+int	op_rr(t_ps *ps)
 {
 	if (!ps->stack_a)
 		return (-1);

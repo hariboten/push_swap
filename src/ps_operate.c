@@ -2,7 +2,7 @@
 
 t_list	*op_lstnew(t_ps *ps, t_op op)
 {
-	t_op *p_op_arr;
+	t_op	*p_op_arr;
 
 	p_op_arr = ps->op_arr;
 	while (*p_op_arr != OP_NULL)
@@ -14,7 +14,7 @@ t_list	*op_lstnew(t_ps *ps, t_op op)
 	return (NULL);
 }
 
-int		operate3(t_ps *ps, t_op op, t_list **operations)
+int	operate3(t_ps *ps, t_op op, t_list **operations)
 {
 	int		ret;
 
@@ -51,7 +51,7 @@ char	*op_get_name(t_op op)
 	return ("invalid operation");
 }
 
-int		restore(t_ps *ps, t_op op)
+int	restore(t_ps *ps, t_op op)
 {
 	if (op == OP_SA)
 		return (op_sa(ps));
@@ -78,7 +78,7 @@ int		restore(t_ps *ps, t_op op)
 	return (ps_error(E_INVOP));
 }
 
-int		operate(t_ps *ps, t_op op)
+int	operate(t_ps *ps, t_op op)
 {
 	if (op == OP_SA)
 		return (op_sa(ps));

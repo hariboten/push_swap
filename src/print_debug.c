@@ -14,7 +14,7 @@
 
 void	print_stack(t_ps *ps, t_list *stack)
 {
-	char 	*text;
+	char	*text;
 
 	(void)ps;
 	while (stack)
@@ -28,8 +28,8 @@ void	print_stack(t_ps *ps, t_list *stack)
 
 void	print_args(t_ps *ps)
 {
-	size_t		i;
-	char 		*text;
+	size_t	i;
+	char	*text;
 
 	i = 0;
 	while (i < ps->arg_num)
@@ -43,7 +43,7 @@ void	print_args(t_ps *ps)
 void	print_oplst(t_list *oplst)
 {
 	if (!oplst)
-		return;
+		return ;
 	print_oplst(oplst->next);
 	ft_putendl_fd(op_get_name(*(t_op *)oplst->content), 1);
 	return ;

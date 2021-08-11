@@ -22,9 +22,9 @@
  * - (duplicate value) <- Do NOT check here.
  *   - checked in coordinate_compression.c
  */
-static bool		is_invalid_arg(const char *arg)
+static bool	is_invalid_arg(const char *arg)
 {
-	const char *p;
+	const char	*p;
 
 	p = arg;
 	if (*p == '0' && *(p + 1))
@@ -49,7 +49,7 @@ static bool		is_invalid_arg(const char *arg)
 /*
  * - note. argv start with index 1.
  */
-static int		input_arguments(t_ps *ps, int argc, char **argv)
+static int	input_arguments(t_ps *ps, int argc, char **argv)
 {
 	int		i;
 
@@ -68,8 +68,8 @@ static int		input_arguments(t_ps *ps, int argc, char **argv)
 
 static t_list	*arr2lst(int *arr, size_t len, void (*del)(void *))
 {
-	t_list *lst;
-	t_list *new_node;
+	t_list	*lst;
+	t_list	*new_node;
 
 	if (!len)
 		return (NULL);
@@ -86,7 +86,7 @@ static t_list	*arr2lst(int *arr, size_t len, void (*del)(void *))
 	return (lst);
 }
 
-t_op		*init_op_arr()
+t_op	*init_op_arr(void)
 {
 	t_op	*op_arr;
 	t_op	*it;
@@ -109,14 +109,14 @@ t_op		*init_op_arr()
  * - coordinate_compression
  * - making stack_a from order arr
  */
-int				ps_init(t_ps *ps, int argc, char **argv)
+int	ps_init(t_ps *ps, int argc, char **argv)
 {
 	ps->arg_num = argc - 1;
 	ps->stack_a = NULL;
 	ps->stack_b = NULL;
 	ps->operations = NULL;
 	ps->args = NULL;
-	ps->op_arr =NULL;
+	ps->op_arr = NULL;
 	ps->order = NULL;
 	if (argc < 2)
 		return (ps_error(E_FEWARG));

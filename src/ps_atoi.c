@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -13,7 +12,7 @@
 
 #include <push_swap.h>
 
-int		ps_isspace(const char c)
+int	ps_isspace(const char c)
 {
 	if (c >= 9 && c <= 13)
 		return (1);
@@ -22,7 +21,7 @@ int		ps_isspace(const char c)
 	return (0);
 }
 
-int		ps_atoi(const char *nptr)
+int	ps_atoi(const char *nptr)
 {
 	long long	num;
 	long long	sign;

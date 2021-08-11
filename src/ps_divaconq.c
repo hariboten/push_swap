@@ -12,9 +12,17 @@
 
 #include <push_swap.h>
 
-int		st_top(t_list *stack)
+int	st_top(t_list *stack)
 {
 	return (*(int *)stack->content);
+}
+
+void	daq_sub(t_ps *ps, int pivot, t_list **operations)
+{
+	if (st_top(ps->stack_a) < pivot)
+		operate3(ps, OP_PB, operations);
+	else
+		operate3(ps, OP_RA, operations);
 }
 
 t_list	*divaconq(t_ps *ps, int begin, int end)
@@ -29,12 +37,7 @@ t_list	*divaconq(t_ps *ps, int begin, int end)
 	pivot = (begin + end) / 2;
 	i = end - begin;
 	while (--i >= 0)
-	{
-		if (st_top(ps->stack_a) < pivot)
-			operate3(ps, OP_PB, &operations);
-		else
-			operate3(ps, OP_RA, &operations);
-	}
+		daq_sub(ps, pivot, &operations);
 	i = end - pivot;
 	if (ft_lstsize(ps->stack_a) != i)
 		while (--i >= 0)
@@ -47,7 +50,7 @@ t_list	*divaconq(t_ps *ps, int begin, int end)
 	return (operations);
 }
 
-int		ps_divaconq(t_ps *ps)
+int	ps_divaconq(t_ps *ps)
 {
 	if (is_arranged(ps))
 		return (0);

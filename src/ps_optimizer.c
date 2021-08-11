@@ -38,7 +38,7 @@ bool	is_reverse(t_list *l, t_list *r)
 
 t_list	*ps_optimizer(t_list *operations)
 {
-	t_list *optimized;
+	t_list	*optimized;
 
 	optimized = NULL;
 	if (operations == NULL)
@@ -49,7 +49,9 @@ t_list	*ps_optimizer(t_list *operations)
 		{
 			ft_lstpop_front(&optimized);
 			ft_lstpop_front(&operations);
-		} else {
+		}
+		else
+		{
 			ft_lstadd_front(&optimized, ft_lstpop_front(&operations));
 		}
 	}

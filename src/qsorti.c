@@ -12,7 +12,7 @@
 
 #include <push_swap.h>
 
-int		lessi(int a, int b)
+int	lessi(int a, int b)
 {
 	if (a < b)
 		return (-1);
@@ -21,9 +21,10 @@ int		lessi(int a, int b)
 	return (0);
 }
 
-static void swapi(int *a, int *b)
+static void	swapi(int *a, int *b)
 {
 	int	tmp;
+
 	tmp = *a;
 	*a = *b;
 	*b = tmp;

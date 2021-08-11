@@ -12,8 +12,6 @@
 
 #include <push_swap.h>
 
-
-
 t_list	*ft_lstcopy(t_list *src, void (*del)(void *))
 {
 	t_list	*copy;
@@ -94,4 +92,3 @@ void	ft_lstreverse(t_list **lst)
 		ft_lstadd_front(&reversed, ft_lstpop_front(&original));
 	*lst = reversed;
 }
-

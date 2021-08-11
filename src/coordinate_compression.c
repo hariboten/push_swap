@@ -15,7 +15,7 @@
 static bool	has_duplication(int *arr, size_t len)
 {
 	size_t	i;
-	int	prev;
+	int		prev;
 
 	prev = arr[0];
 	i = 1;
@@ -64,7 +64,7 @@ static void	ordering(int *order, int *sorted, size_t len)
  * - copy args to order arr.
  * - search order number.
  */
-int		coordinate_compression(int *order, int *arr, size_t len)
+int	coordinate_compression(int *order, int *arr, size_t len)
 {
 	int	*sorted;
 

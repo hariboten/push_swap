@@ -12,15 +12,14 @@
 
 #include <push_swap.h>
 
-
-int		ps_error(t_errno e)
+int	ps_error(t_errno e)
 {
 	(void) e;
 	ft_putstr_fd("Error\n", 2);
 	return (-1);
 }
 
-int		push_swap(t_ps *ps)
+int	push_swap(t_ps *ps)
 {
 	int		ret_val;
 
