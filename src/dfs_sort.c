@@ -46,6 +46,7 @@ int	dfs_rec(t_ps *ps, t_dfs *dfs, t_op *op, int depth)
 	}
 	ret = search_next_node(ps, dfs, depth);
 	ft_lstdelone(ft_lstpop_front(&dfs->node_op), NULL);
+	restore(ps, *op);
 	return (ret);
 }
 
