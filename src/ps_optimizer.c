@@ -1,4 +1,3 @@
-/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ps_optimizer.c                                     :+:      :+:    :+:   */
@@ -59,8 +58,8 @@ t_list	*ps_optimizer(t_list *operations)
 	{
 		if (is_reverse(operations, optimized))
 		{
-			ft_lstpop_front(&optimized);
-			ft_lstpop_front(&operations);
+			ft_lstdelone(ft_lstpop_front(&optimized), NULL);
+			ft_lstdelone(ft_lstpop_front(&operations), NULL);
 		}
 		else
 		{
