@@ -119,7 +119,7 @@ int	ps_init(t_ps *ps, int argc, char **argv)
 	ps->op_arr = NULL;
 	ps->order = NULL;
 	if (argc < 2)
-		return (ps_error(E_FEWARG));
+		return (-1);
 	ps->args = malloc(ps->arg_num * sizeof(int));
 	ps->op_arr = init_op_arr();
 	if (!ps->args || !ps->op_arr)

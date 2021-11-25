@@ -37,7 +37,7 @@ INCLUDEDIR = ./include/
 LIBFTDIR = ./libft/
 LIBFT = libft.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I $(INCLUDEDIR)  -g -O0
+CFLAGS = -Wall -Werror -Wextra -I $(INCLUDEDIR)
 
 all : $(OBJDIR) $(NAME)
 
